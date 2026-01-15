@@ -24,12 +24,8 @@ app.get("/", (req, res) => {
   res.send("API running");
 });
 app.get("/user", (req, res) => {
-  res.status(200).json({
-    success: true,
-    data: {
-      name: "Mudasir Abbas",
-    },
-  });
+  if(!db){
+      res.json({ msg:"Database failed"});
 });
 
 
