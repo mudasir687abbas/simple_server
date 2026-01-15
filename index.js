@@ -24,8 +24,14 @@ app.get("/", (req, res) => {
   res.send("API running");
 });
 app.get("/user", (req, res) => {
-  res.json({'name':'Mudasir Abbas'});
+  res.status(200).json({
+    success: true,
+    data: {
+      name: "Mudasir Abbas",
+    },
+  });
 });
+
 
 // app.listen(3000, () => {
 //   console.log("Server running on port 3000");
