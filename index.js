@@ -23,9 +23,27 @@ try {
 app.get("/", (req, res) => {
   res.send("API running");
 });
-app.get("/user", (req, res) => {
-  if(!db){
-      res.json({ msg:"Database failed"});
+app.get("/user", async (req, res) => {
+  if (!db) {
+    return res.status(503).json({
+      success: false,
+      message: "Database not available",
+    });
+  }
+
+  try {
+    const [rows] = await db.query("SELECT * FROM users");
+    return res.status(200).json({
+      success: true,
+      data: rows,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Query failed",
+      error: error.message,
+    });
+  }
 });
 
 
