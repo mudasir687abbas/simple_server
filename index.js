@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
   res.send("API running");
 });
 app.get("/user", (req, res) => {
-  res.json({name:'Mudasir Abbas');
+  res.json({'name':'Mudasir Abbas'});
 });
 
 // app.listen(3000, () => {
